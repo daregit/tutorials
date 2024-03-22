@@ -1,0 +1,47 @@
+version: '3.7'
+
+volumes:
+    tor-data:
+    caddy_data:
+    caddy_config:
+    gitea-data:
+
+networks:
+  isolated:
+    internal: true
+
+services:
+  tor-node:
+    build: .
+    volumes:
+      - tor-data:/var/lib/tor
+    networks:
+      - isolated
+      - default
+    links:
+      - caddy
+
+  caddy:
+    image: caddy:latest
+    volumes:
+      - ./datadir/Caddyfile:/etc/caddy/Caddyfile
+      - ./datadir/cert:/cert
+      - caddy_data:/data
+      - caddy_config:/config
+    links:
+      - gitea
+    networks:
+      - isolated
+
+  gitea:
+    image: gitea/gitea:latest
+    environment:
+      - USER_UID=1000
+      - USER_GID=1000
+    restart: always
+    volumes:
+      - gitea-data:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    networks:
+      - isolated
