@@ -2,6 +2,10 @@
 
 This project sets up a Gitea instance accessible via a Tor hidden service, using Docker and Caddy.
 
+## Security Disclaimer
+
+This configuration uses self-signed certificates. It is recommended to generate certificates from a trusted Certificate Authority (CA).
+
 ## Prerequisites
 
 Before you begin, ensure you have the following installed on your system:
