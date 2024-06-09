@@ -1,6 +1,6 @@
 # Gitea with Tor and Caddy Setup
 
-This project sets up a Gitea instance accessible via a Tor hidden service, using Docker, Caddy.
+This project sets up a Gitea instance accessible via a Tor hidden service, using Docker and Caddy.
 
 ## Prerequisites
 

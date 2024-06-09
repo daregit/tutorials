@@ -1,10 +1,5 @@
-{
-  auto_https disable_certs
-}
-
 *.onion {
-  tls /cert/cert.pem /cert/key.pem
-  encode gzip
+  tls internal
 
   reverse_proxy gitea:3000 {
     header_up X-Real-IP {remote_host}
