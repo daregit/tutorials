@@ -1,5 +1,3 @@
-version: '3.7'
-
 volumes:
     tor-data:
     caddy_data:
