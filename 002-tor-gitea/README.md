@@ -19,3 +19,14 @@ cd tutorials/002-tor-gitea
 ./restart.sh
 
 ```
+
+### 2. Setup gitea admin accounts
+
+### 3. Configure ssh
+
+```
+Host *.onion
+    ProxyCommand nc -X 5 -x localhost:9050  %h %p
+```
+
+Where localhost:9050 is location of your tor instance listening for socks connections.

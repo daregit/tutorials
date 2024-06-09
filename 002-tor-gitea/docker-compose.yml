@@ -22,8 +22,8 @@ services:
   caddy:
     image: caddy:latest
     volumes:
-      - ./datadir/Caddyfile:/etc/caddy/Caddyfile
-      - ./datadir/cert:/cert
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - ./cert:/cert
       - caddy_data:/data
       - caddy_config:/config
     links:
