@@ -1,9 +1,3 @@
-volumes:
-    tor-data:
-    caddy_data:
-    caddy_config:
-    gitea-data:
-
 networks:
   isolated:
     internal: true
@@ -12,24 +6,22 @@ services:
   tor-node:
     build: .
     volumes:
-      - tor-data:/var/lib/tor
+      - ./data/tor:/var/lib/tor
     networks:
       - isolated
       - default
     links:
       - caddy
-
   caddy:
     image: caddy:latest
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile
-      - caddy_data:/data
-      - caddy_config:/config
+      - ./data/caddy:/data
+      - ./data/caddy_config:/config
     links:
       - gitea
     networks:
       - isolated
-
   gitea:
     image: gitea/gitea:latest
     environment:
@@ -37,8 +29,6 @@ services:
       - USER_GID=1000
     restart: always
     volumes:
-      - gitea-data:/data
-      - /etc/timezone:/etc/timezone:ro
-      - /etc/localtime:/etc/localtime:ro
+      - ./data/gitea:/data
     networks:
       - isolated
