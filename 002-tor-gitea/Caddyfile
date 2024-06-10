@@ -1,7 +1,0 @@
-*.onion {
-  tls internal
-
-  reverse_proxy gitea:3000 {
-    header_up X-Real-IP {remote_host}
-  }
-}
